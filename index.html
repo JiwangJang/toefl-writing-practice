@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TOEFL Writing Practice</title>
+        <style>
+            :root {
+                --bg: #0b0d12;
+                --panel: #121624;
+                --panel2: #0f1320;
+                --text: #e8ecff;
+                --muted: #aab3d6;
+                --border: rgba(255, 255, 255, 0.1);
+                --accent: #7aa2ff;
+                --danger: #ff6b6b;
+                --ok: #3ddc97;
+                --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+                --radius: 16px;
+                --mono:
+                    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                --sans:
+                    ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans",
+                    "Apple Color Emoji", "Segoe UI Emoji";
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                background:
+                    radial-gradient(1200px 600px at 20% -10%, rgba(122, 162, 255, 0.25), transparent 60%),
+                    radial-gradient(900px 500px at 90% 10%, rgba(61, 220, 151, 0.16), transparent 55%), var(--bg);
+                color: var(--text);
+                font-family: var(--sans);
+                line-height: 1.4;
+            }
+
+            .wrap {
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 28px 18px 40px;
+            }
+
+            header {
+                display: grid;
+                gap: 10px;
+                margin-bottom: 16px;
+            }
+
+            h1 {
+                margin: 0;
+                font-size: 20px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+            }
+
+            .sub {
+                color: var(--muted);
+                font-size: 13px;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: 1.25fr 0.75fr;
+                gap: 14px;
+                align-items: start;
+            }
+
+            @media (max-width: 900px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .card {
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 40%), var(--panel);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                overflow: hidden;
+            }
+
+            .card .hd {
+                padding: 14px 16px;
+                background: rgba(0, 0, 0, 0.18);
+                border-bottom: 1px solid var(--border);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .badge {
+                font-family: var(--mono);
+                font-size: 12px;
+                padding: 6px 10px;
+                border-radius: 999px;
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.04);
+                color: var(--muted);
+                white-space: nowrap;
+            }
+
+            .badge strong {
+                color: var(--text);
+            }
+
+            .content {
+                padding: 14px 16px 16px;
+                display: grid;
+                gap: 12px;
+            }
+
+            textarea {
+                width: 100%;
+                min-height: 420px;
+                resize: vertical;
+                border-radius: 14px;
+                border: 1px solid var(--border);
+                background: var(--panel2);
+                color: var(--text);
+                padding: 14px 14px;
+                font-size: 14px;
+                outline: none;
+                line-height: 1.6;
+            }
+
+            textarea:focus {
+                border-color: rgba(122, 162, 255, 0.55);
+                box-shadow: 0 0 0 3px rgba(122, 162, 255, 0.18);
+            }
+
+            textarea[disabled] {
+                opacity: 0.7;
+                cursor: not-allowed;
+            }
+
+            .hint {
+                color: var(--muted);
+                font-size: 12px;
+            }
+
+            .controls {
+                display: grid;
+                gap: 12px;
+            }
+
+            .row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .row3 {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 10px;
+            }
+
+            .field {
+                display: grid;
+                gap: 6px;
+            }
+
+            label {
+                font-size: 12px;
+                color: var(--muted);
+            }
+
+            input[type="number"] {
+                width: 100%;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: var(--panel2);
+                color: var(--text);
+                padding: 10px 10px;
+                font-size: 13px;
+                outline: none;
+                font-family: var(--mono);
+            }
+
+            input[type="number"]:focus {
+                border-color: rgba(122, 162, 255, 0.55);
+                box-shadow: 0 0 0 3px rgba(122, 162, 255, 0.18);
+            }
+
+            .btns {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 10px;
+            }
+
+            button {
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.04);
+                color: var(--text);
+                border-radius: 12px;
+                padding: 11px 10px;
+                font-weight: 650;
+                cursor: pointer;
+                transition:
+                    transform 0.02s ease,
+                    background 0.15s ease,
+                    border-color 0.15s ease;
+                font-size: 13px;
+            }
+
+            button:active {
+                transform: translateY(1px);
+            }
+
+            button.primary {
+                background: rgba(122, 162, 255, 0.16);
+                border-color: rgba(122, 162, 255, 0.35);
+            }
+
+            button.primary:hover {
+                background: rgba(122, 162, 255, 0.22);
+            }
+
+            button.warn {
+                background: rgba(255, 107, 107, 0.14);
+                border-color: rgba(255, 107, 107, 0.3);
+            }
+
+            button.warn:hover {
+                background: rgba(255, 107, 107, 0.2);
+            }
+
+            button.ghost:hover {
+                background: rgba(255, 255, 255, 0.07);
+            }
+
+            .statGrid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat {
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 14px;
+                padding: 12px;
+                display: grid;
+                gap: 6px;
+            }
+
+            .stat .k {
+                color: var(--muted);
+                font-size: 12px;
+            }
+            .stat .v {
+                font-family: var(--mono);
+                font-size: 18px;
+                font-weight: 800;
+            }
+
+            .timer {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 12px 12px;
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                background: rgba(255, 255, 255, 0.03);
+            }
+
+            .timer .label {
+                font-size: 12px;
+                color: var(--muted);
+            }
+
+            .timer .time {
+                font-family: var(--mono);
+                font-size: 22px;
+                font-weight: 900;
+                letter-spacing: 0.5px;
+            }
+
+            .timer.danger .time {
+                color: var(--danger);
+            }
+            .timer.ok .time {
+                color: var(--ok);
+            }
+
+            .divider {
+                height: 1px;
+                background: var(--border);
+                margin: 6px 0;
+            }
+
+            .small {
+                font-size: 12px;
+                color: var(--muted);
+            }
+
+            .toast {
+                padding: 10px 12px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.18);
+                color: var(--muted);
+                font-size: 12px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <header>
+                <h1>TOEFL Writing Practice</h1>
+                <div class="sub">
+                    Single-file practice page. Counts words. Shows timer. Locks input when time is up. Civilized enough
+                    for exam prep.
+                </div>
+            </header>
+
+            <div class="grid">
+                <!-- Editor -->
+                <section class="card">
+                    <div class="hd">
+                        <div class="badge">
+                            Words: <strong id="wordCount">0</strong> · Chars: <strong id="charCount">0</strong>
+                        </div>
+                        <div class="badge">Status: <strong id="statusText">Ready</strong></div>
+                    </div>
+                    <div class="content">
+                        <textarea id="editor" placeholder="Write here..."></textarea>
+                        <div class="hint">
+                            Tip: Use this like the TOEFL email task. Keep it around 100–150 words if that's your target.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Controls -->
+                <aside class="card">
+                    <div class="hd">
+                        <div class="badge">Timer</div>
+                        <div class="badge">Mode: <strong id="modeText">Idle</strong></div>
+                    </div>
+                    <div class="content controls">
+                        <div class="timer" id="timerBox">
+                            <div>
+                                <div class="label">Time left</div>
+                                <div class="small">Always visible</div>
+                            </div>
+                            <div class="time" id="timeLeft">00:00</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field">
+                                <label for="minutes">Minutes</label>
+                                <input id="minutes" type="number" min="0" max="180" value="5" />
+                            </div>
+                            <div class="field">
+                                <label for="seconds">Seconds</label>
+                                <input id="seconds" type="number" min="0" max="59" value="0" />
+                            </div>
+                        </div>
+
+                        <div class="btns">
+                            <button class="primary" id="startBtn">Start</button>
+                            <button class="ghost" id="pauseBtn" disabled>Pause</button>
+                            <button class="warn" id="resetBtn">Reset</button>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="statGrid">
+                            <div class="stat">
+                                <div class="k">WPM (rough)</div>
+                                <div class="v" id="wpm">0</div>
+                            </div>
+                            <div class="stat">
+                                <div class="k">Elapsed</div>
+                                <div class="v" id="elapsed">00:00</div>
+                            </div>
+                        </div>
+
+                        <div class="toast" id="toast">
+                            Set a time, press Start, and write. When time hits zero, input locks. Reset to try again.
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <script>
+            // ---------- Utilities ----------
+            function clamp(n, min, max) {
+                return Math.max(min, Math.min(max, n));
+            }
+
+            function pad2(n) {
+                return String(n).padStart(2, "0");
+            }
+
+            function formatMMSS(totalSeconds) {
+                totalSeconds = Math.max(0, Math.floor(totalSeconds));
+                const m = Math.floor(totalSeconds / 60);
+                const s = totalSeconds % 60;
+                return `${pad2(m)}:${pad2(s)}`;
+            }
+
+            // Word count that behaves like writing tools:
+            // - split by whitespace
+            // - ignore empty tokens
+            function countWords(text) {
+                const trimmed = text.trim();
+                if (!trimmed) return 0;
+                return trimmed.split(/\s+/).filter(Boolean).length;
+            }
+
+            // ---------- Elements ----------
+            const editor = document.getElementById("editor");
+            const wordCountEl = document.getElementById("wordCount");
+            const charCountEl = document.getElementById("charCount");
+            const statusTextEl = document.getElementById("statusText");
+            const modeTextEl = document.getElementById("modeText");
+
+            const minutesEl = document.getElementById("minutes");
+            const secondsEl = document.getElementById("seconds");
+
+            const timeLeftEl = document.getElementById("timeLeft");
+            const elapsedEl = document.getElementById("elapsed");
+            const wpmEl = document.getElementById("wpm");
+            const timerBox = document.getElementById("timerBox");
+            const toast = document.getElementById("toast");
+
+            const startBtn = document.getElementById("startBtn");
+            const pauseBtn = document.getElementById("pauseBtn");
+            const resetBtn = document.getElementById("resetBtn");
+
+            // ---------- State ----------
+            let totalSeconds = 0;
+            let remainingSeconds = 0;
+            let elapsedSeconds = 0;
+
+            let timerId = null;
+            let running = false;
+            let finished = false;
+
+            // ---------- Word count updates ----------
+            function updateCounts() {
+                const text = editor.value;
+                const wc = countWords(text);
+                wordCountEl.textContent = wc;
+                charCountEl.textContent = text.length;
+
+                // Rough WPM: words / minutes elapsed (avoid divide by zero)
+                const minutesElapsed = elapsedSeconds / 60;
+                const wpm = minutesElapsed > 0 ? Math.round(wc / minutesElapsed) : 0;
+                wpmEl.textContent = String(wpm);
+            }
+
+            editor.addEventListener("input", updateCounts);
+
+            // ---------- Timer ----------
+            function setTimerBoxStyle() {
+                timerBox.classList.remove("danger", "ok");
+
+                if (!running && !finished) {
+                    // idle
+                    return;
+                }
+
+                if (finished) {
+                    timerBox.classList.add("danger");
+                    return;
+                }
+
+                // running
+                const ratio = totalSeconds > 0 ? remainingSeconds / totalSeconds : 0;
+                if (ratio <= 0.15) timerBox.classList.add("danger");
+                else timerBox.classList.add("ok");
+            }
+
+            function syncTimerUI() {
+                timeLeftEl.textContent = formatMMSS(remainingSeconds);
+                elapsedEl.textContent = formatMMSS(elapsedSeconds);
+
+                if (finished) {
+                    modeTextEl.textContent = "Finished";
+                    statusTextEl.textContent = "Locked";
+                    toast.textContent = "Time is up. Input is locked. Press Reset to try again.";
+                } else if (running) {
+                    modeTextEl.textContent = "Running";
+                    statusTextEl.textContent = "Writing";
+                    toast.textContent = "Keep going. You're on the clock.";
+                } else {
+                    modeTextEl.textContent = "Idle";
+                    statusTextEl.textContent = "Ready";
+                    toast.textContent =
+                        "Set a time, press Start, and write. When time hits zero, input locks. Reset to try again.";
+                }
+
+                setTimerBoxStyle();
+                updateCounts();
+            }
+
+            function readUserTime() {
+                const m = clamp(parseInt(minutesEl.value || "0", 10), 0, 180);
+                const s = clamp(parseInt(secondsEl.value || "0", 10), 0, 59);
+                minutesEl.value = String(m);
+                secondsEl.value = String(s);
+                return m * 60 + s;
+            }
+
+            function lockInputs(lock) {
+                editor.disabled = lock;
+                minutesEl.disabled = lock || running; // don't allow editing while running
+                secondsEl.disabled = lock || running;
+            }
+
+            function startTimer() {
+                if (running) return;
+
+                if (finished) {
+                    // If finished, start requires reset first
+                    return;
+                }
+
+                if (totalSeconds === 0) {
+                    totalSeconds = readUserTime();
+                    remainingSeconds = totalSeconds;
+                    elapsedSeconds = 0;
+                }
+
+                if (remainingSeconds <= 0) {
+                    totalSeconds = readUserTime();
+                    remainingSeconds = totalSeconds;
+                    elapsedSeconds = 0;
+                }
+
+                if (remainingSeconds <= 0) {
+                    toast.textContent = "Time must be greater than 0.";
+                    return;
+                }
+
+                running = true;
+                lockInputs(false);
+                minutesEl.disabled = true;
+                secondsEl.disabled = true;
+
+                startBtn.disabled = true;
+                pauseBtn.disabled = false;
+
+                timerId = setInterval(() => {
+                    remainingSeconds -= 1;
+                    elapsedSeconds += 1;
+
+                    if (remainingSeconds <= 0) {
+                        remainingSeconds = 0;
+                        finishTimer();
+                        return;
+                    }
+
+                    syncTimerUI();
+                }, 1000);
+
+                syncTimerUI();
+                editor.focus();
+            }
+
+            function pauseTimer() {
+                if (!running) return;
+                running = false;
+
+                if (timerId) clearInterval(timerId);
+                timerId = null;
+
+                startBtn.disabled = false;
+                pauseBtn.disabled = true;
+
+                // allow time changes only when not running and not finished
+                minutesEl.disabled = false;
+                secondsEl.disabled = false;
+
+                syncTimerUI();
+            }
+
+            function finishTimer() {
+                finished = true;
+                running = false;
+
+                if (timerId) clearInterval(timerId);
+                timerId = null;
+
+                lockInputs(true);
+
+                startBtn.disabled = true;
+                pauseBtn.disabled = true;
+
+                syncTimerUI();
+            }
+
+            function resetAll() {
+                if (timerId) clearInterval(timerId);
+                timerId = null;
+
+                running = false;
+                finished = false;
+
+                totalSeconds = readUserTime();
+                remainingSeconds = totalSeconds;
+                elapsedSeconds = 0;
+
+                editor.disabled = false;
+                minutesEl.disabled = false;
+                secondsEl.disabled = false;
+
+                startBtn.disabled = false;
+                pauseBtn.disabled = true;
+
+                syncTimerUI();
+                editor.focus();
+            }
+
+            // ---------- Events ----------
+            startBtn.addEventListener("click", () => {
+                // If user changed time before starting, adopt it
+                if (!running && !finished) {
+                    totalSeconds = readUserTime();
+                    remainingSeconds = totalSeconds;
+                    elapsedSeconds = 0;
+                }
+                startTimer();
+            });
+
+            pauseBtn.addEventListener("click", pauseTimer);
+            resetBtn.addEventListener("click", resetAll);
+
+            minutesEl.addEventListener("change", () => {
+                if (running) return;
+                totalSeconds = readUserTime();
+                remainingSeconds = totalSeconds;
+                elapsedSeconds = 0;
+                syncTimerUI();
+            });
+
+            secondsEl.addEventListener("change", () => {
+                if (running) return;
+                totalSeconds = readUserTime();
+                remainingSeconds = totalSeconds;
+                elapsedSeconds = 0;
+                syncTimerUI();
+            });
+
+            // Initialize UI
+            (function init() {
+                totalSeconds = readUserTime();
+                remainingSeconds = totalSeconds;
+                elapsedSeconds = 0;
+                syncTimerUI();
+            })();
+        </script>
+    </body>
+</html>
